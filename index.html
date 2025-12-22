@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DepreciationIQ - Make More. Keep More. Build More.</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-900: #0A1628;
+            --navy-800: #0F2140;
+            --navy-700: #162D54;
+            --navy-600: #1E3A68;
+            --teal-400: #2DD4BF;
+            --teal-500: #14B8A6;
+            --teal-600: #0D9488;
+            --white: #FFFFFF;
+            --gray-100: #F1F5F9;
+            --gray-300: #CBD5E1;
+            --gray-400: #94A3B8;
+            --gray-500: #64748B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--navy-900);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(45, 212, 191, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: var(--teal-400);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal-400);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--white);
+            border: none;
+        }
+
+        .btn-ghost:hover {
+            color: var(--teal-400);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--teal-400), var(--teal-600));
+            color: var(--navy-900);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(45, 212, 191, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 48px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(45, 212, 191, 0.15), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(45, 212, 191, 0.08), transparent);
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(45, 212, 191, 0.1);
+            border: 1px solid rgba(45, 212, 191, 0.3);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 14px;
+            color: var(--teal-400);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--teal-400);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--teal-400), var(--teal-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--gray-400);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 520px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 16px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--teal-400);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+
+        /* Calculator Preview */
+        .hero-visual {
+            background: var(--navy-800);
+            border: 1px solid var(--navy-600);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+        }
+
+        .calculator-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .calculator-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .calculator-toggle {
+            display: flex;
+            background: var(--navy-700);
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        .toggle-btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: transparent;
+            color: var(--gray-400);
+        }
+
+        .toggle-btn.active {
+            background: var(--teal-500);
+            color: var(--navy-900);
+        }
+
+        .calculator-form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-400);
+            margin-bottom: 8px;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--navy-700);
+            border: 1px solid var(--navy-600);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--teal-400);
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, rgba(45, 212, 191, 0.1), rgba(13, 148, 136, 0.1));
+            border: 1px solid rgba(45, 212, 191, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .result-label {
+            font-size: 14px;
+            color: var(--gray-400);
+            margin-bottom: 8px;
+        }
+
+        .result-value {
+            font-size: 42px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--teal-400);
+        }
+
+        .result-detail {
+            font-size: 14px;
+            color: var(--gray-400);
+            margin-top: 8px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 48px;
+            background: var(--navy-800);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 64px;
+        }
+
+        .section-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--teal-400);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 44px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--gray-400);
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--navy-900);
+            border: 1px solid var(--navy-600);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--teal-400);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(45, 212, 191, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-desc {
+            font-size: 15px;
+            color: var(--gray-400);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 120px 48px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--navy-800);
+            border: 1px solid var(--navy-600);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+        }
+
+        .pricing-card.popular {
+            border-color: var(--teal-400);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--teal-400), var(--teal-600));
+            color: var(--navy-900);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 100px;
+        }
+
+        .pricing-tier {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--teal-400);
+            margin-bottom: 8px;
+        }
+
+        .pricing-price {
+            font-size: 48px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 4px;
+        }
+
+        .pricing-price span {
+            font-size: 18px;
+            color: var(--gray-500);
+            font-weight: 400;
+        }
+
+        .pricing-annual {
+            font-size: 14px;
+            color: var(--gray-500);
+            margin-bottom: 32px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--gray-300);
+            margin-bottom: 16px;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--teal-400);
+            font-weight: 700;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Audience Section */
+        .audience {
+            padding: 120px 48px;
+            background: var(--navy-800);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .audience-card {
+            background: var(--navy-900);
+            border: 1px solid var(--navy-600);
+            border-radius: 12px;
+            padding: 28px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .audience-card:hover {
+            border-color: var(--teal-400);
+            transform: translateY(-4px);
+        }
+
+        .audience-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .audience-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .audience-desc {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 120px 48px;
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(45, 212, 191, 0.1), rgba(13, 148, 136, 0.05));
+            border: 1px solid rgba(45, 212, 191, 0.3);
+            border-radius: 24px;
+            padding: 64px;
+        }
+
+        .cta h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            color: var(--gray-400);
+            margin-bottom: 32px;
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 12px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .cta-form input {
+            flex: 1;
+            padding: 16px 20px;
+            background: var(--navy-800);
+            border: 1px solid var(--navy-600);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 16px;
+        }
+
+        .cta-form input:focus {
+            outline: none;
+            border-color: var(--teal-400);
+        }
+
+        /* Footer */
+        footer {
+            padding: 48px;
+            border-top: 1px solid var(--navy-700);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-links a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: var(--teal-400);
+        }
+
+        .footer-copy {
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-subtitle {
+                margin: 0 auto 40px;
+            }
+
+            .hero-ctas {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .features-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .pricing-card.popular {
+                transform: none;
+            }
+
+            .audience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                padding: 16px 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 24px 60px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .features,
+            .pricing,
+            .audience,
+            .cta {
+                padding: 80px 24px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-form {
+                flex-direction: column;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <svg viewBox="0 0 40 40" fill="none">
+                <rect x="4" y="24" width="8" height="12" rx="2" fill="url(#tealGrad)"/>
+                <rect x="16" y="16" width="8" height="20" rx="2" fill="url(#tealGrad)"/>
+                <rect x="28" y="8" width="8" height="28" rx="2" fill="url(#tealGrad)"/>
+                <defs>
+                    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#2DD4BF"/>
+                        <stop offset="100%" stop-color="#0D9488"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <div class="logo-text">Depreciation<span>IQ</span></div>
+        </div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#calculator">Calculator</a>
+            <a href="#about">About</a>
+        </div>
+        <div class="nav-cta">
+            <a href="depreciationiq_dashboard.html" class="btn btn-ghost">Log In</a>
+            <a href="#cta" class="btn btn-primary">Get Started Free</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="calculator">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">Now in Beta</div>
+                <h1>Make More.<br><span class="highlight">Keep More.</span><br>Build More.</h1>
+                <p class="hero-subtitle">The first platform that doesn't just calculate depreciation — we tell you what to do about it. Stop leaving money with the IRS.</p>
+                <div class="hero-ctas">
+                    <a href="#cta" class="btn btn-primary btn-large">Start Free Trial</a>
+                    <a href="#features" class="btn btn-ghost btn-large">See How It Works →</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-value">$4.2M+</div>
+                        <div class="stat-label">Tax savings identified</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">12,000+</div>
+                        <div class="stat-label">Assets tracked</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">98%</div>
+                        <div class="stat-label">Accuracy rate</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="calculator-header">
+                    <div class="calculator-title">Depreciation Calculator</div>
+                    <div class="calculator-toggle">
+                        <button class="toggle-btn active" onclick="setMode('personal')">Personal</button>
+                        <button class="toggle-btn" onclick="setMode('business')">Business</button>
+                    </div>
+                </div>
+                <div class="calculator-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Vehicle Make</label>
+                            <select id="make" onchange="updateCalculation()">
+                                <option value="tesla">Tesla</option>
+                                <option value="ford">Ford</option>
+                                <option value="toyota">Toyota</option>
+                                <option value="bmw">BMW</option>
+                                <option value="mercedes">Mercedes-Benz</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Model</label>
+                            <select id="model" onchange="updateCalculation()">
+                                <option value="model-y">Model Y</option>
+                                <option value="model-3">Model 3</option>
+                                <option value="model-s">Model S</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Purchase Year</label>
+                            <select id="year" onchange="updateCalculation()">
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Purchase Price</label>
+                            <input type="text" id="price" value="$52,000" onkeyup="updateCalculation()">
+                        </div>
+                    </div>
+                </div>
+                <div class="result-card">
+                    <div class="result-label">Your 5-Year Depreciation</div>
+                    <div class="result-value" id="result-value">$28,340</div>
+                    <div class="result-detail" id="result-detail">Based on MACRS 5-year schedule. You could save <strong>$7,368</strong> in taxes.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <div class="section-label">Features</div>
+            <h2 class="section-title">Everything you need to optimize</h2>
+            <p class="section-subtitle">Track, calculate, and strategize — all in one platform built for independent earners.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Asset Vault</h3>
+                <p class="feature-desc">Track every vehicle, equipment, and property in one place. Never lose a receipt or forget a purchase date again.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Tax Projections</h3>
+                <p class="feature-desc">See your estimated tax liability in real-time. Know exactly where you stand before April surprises you.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⏰</div>
+                <h3 class="feature-title">Timing Alerts</h3>
+                <p class="feature-desc">Get notified when to buy, sell, or take action. Never miss a Section 179 deadline or optimal sale window.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">AI Strategy Engine</h3>
+                <p class="feature-desc">Ask questions, get personalized recommendations. Your AI tax strategist that knows your entire financial picture.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏢</div>
+                <h3 class="feature-title">Multi-Entity Support</h3>
+                <p class="feature-desc">Manage LLCs, S-corps, and personal assets across all your entities. See the complete picture.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+                <h3 class="feature-title">CPA-Ready Reports</h3>
+                <p class="feature-desc">Export audit-ready depreciation schedules. Walk into tax season with everything your accountant needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-header">
+            <div class="section-label">Pricing</div>
+            <h2 class="section-title">Simple, transparent pricing</h2>
+            <p class="section-subtitle">Start free, upgrade when you're ready. Cancel anytime.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-tier">Individual</div>
+                <div class="pricing-price">$19.99<span>/mo</span></div>
+                <div class="pricing-annual">or $149/year (save 38%)</div>
+                <ul class="pricing-features">
+                    <li>Up to 10 assets</li>
+                    <li>Depreciation calculator</li>
+                    <li>Tax projections</li>
+                    <li>Year-end alerts</li>
+                    <li>PDF reports</li>
+                    <li>Email support</li>
+                </ul>
+                <a href="#cta" class="btn btn-primary">Get Started</a>
+            </div>
+            <div class="pricing-card popular">
+                <div class="pricing-tier">Business</div>
+                <div class="pricing-price">$99<span>/mo</span></div>
+                <div class="pricing-annual">or $899/year (save 24%)</div>
+                <ul class="pricing-features">
+                    <li>Unlimited assets</li>
+                    <li>Multi-entity support</li>
+                    <li>AI strategy engine</li>
+                    <li>Scenario modeling</li>
+                    <li>QuickBooks export</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="#cta" class="btn btn-primary">Get Started</a>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-tier">Enterprise</div>
+                <div class="pricing-price">$799<span>/mo</span></div>
+                <div class="pricing-annual">or $6,999/year (save 27%)</div>
+                <ul class="pricing-features">
+                    <li>Everything in Business</li>
+                    <li>Unlimited clients</li>
+                    <li>White-label reports</li>
+                    <li>Client portal</li>
+                    <li>API access</li>
+                    <li>Dedicated support</li>
+                </ul>
+                <a href="#cta" class="btn btn-primary">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audience Section -->
+    <section class="audience" id="about">
+        <div class="section-header">
+            <div class="section-label">Who It's For</div>
+            <h2 class="section-title">Built for independent earners</h2>
+            <p class="section-subtitle">If you own assets and want to keep more of what you make, you're in the right place.</p>
+        </div>
+        <div class="audience-grid">
+            <div class="audience-card">
+                <div class="audience-icon">💼</div>
+                <h3 class="audience-title">1099 Workers</h3>
+                <p class="audience-desc">Freelancers and contractors</p>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon">🏛️</div>
+                <h3 class="audience-title">Gov Contractors</h3>
+                <p class="audience-desc">Federal and state contractors</p>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon">🍽️</div>
+                <h3 class="audience-title">Restaurant Owners</h3>
+                <p class="audience-desc">Equipment-heavy businesses</p>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon">🏠</div>
+                <h3 class="audience-title">Real Estate Investors</h3>
+                <p class="audience-desc">Rental property owners</p>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon">💻</div>
+                <h3 class="audience-title">Online Businesses</h3>
+                <p class="audience-desc">Ecommerce and digital nomads</p>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon">⚕️</div>
+                <h3 class="audience-title">Medical Professionals</h3>
+                <p class="audience-desc">Doctors and specialists</p>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon">⚖️</div>
+                <h3 class="audience-title">Legal Professionals</h3>
+                <p class="audience-desc">Attorneys and law firms</p>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon">🚚</div>
+                <h3 class="audience-title">Fleet Operators</h3>
+                <p class="audience-desc">Multi-vehicle businesses</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="cta">
+        <div class="cta-box">
+            <h2>Ready to keep more of what you make?</h2>
+            <p>Join thousands of business owners who've stopped leaving money on the table.</p>
+            <form class="cta-form" onsubmit="handleSubmit(event)">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn btn-primary btn-large">Start Free Trial</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo">
+            <svg viewBox="0 0 40 40" fill="none" width="32" height="32">
+                <rect x="4" y="24" width="8" height="12" rx="2" fill="url(#tealGrad2)"/>
+                <rect x="16" y="16" width="8" height="20" rx="2" fill="url(#tealGrad2)"/>
+                <rect x="28" y="8" width="8" height="28" rx="2" fill="url(#tealGrad2)"/>
+                <defs>
+                    <linearGradient id="tealGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#2DD4BF"/>
+                        <stop offset="100%" stop-color="#0D9488"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <div class="logo-text">Depreciation<span>IQ</span></div>
+        </div>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact</a>
+            <a href="#">Blog</a>
+        </div>
+        <div class="footer-copy">© 2025 DepreciationIQ. All rights reserved.</div>
+    </footer>
+
+    <script>
+        let mode = 'personal';
+
+        function setMode(newMode) {
+            mode = newMode;
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.toLowerCase() === newMode);
+            });
+            updateCalculation();
+        }
+
+        function updateCalculation() {
+            const priceInput = document.getElementById('price').value;
+            const price = parseInt(priceInput.replace(/[^0-9]/g, '')) || 52000;
+            const year = parseInt(document.getElementById('year').value);
+            const currentYear = 2025;
+            const age = currentYear - year;
+
+            // Simplified depreciation calculation
+            let depreciationRate = 0.15 + (age * 0.10); // Base rate increases with age
+            depreciationRate = Math.min(depreciationRate, 0.60); // Cap at 60%
+
+            let totalDepreciation = Math.round(price * depreciationRate);
+            let taxSavings = Math.round(totalDepreciation * 0.26); // 26% effective rate
+
+            if (mode === 'business') {
+                // Business mode: add Section 179 benefits
+                totalDepreciation = Math.round(price * 0.80); // Can depreciate more
+                taxSavings = Math.round(totalDepreciation * 0.32); // Higher bracket
+            }
+
+            document.getElementById('result-value').textContent = '$' + totalDepreciation.toLocaleString();
+            document.getElementById('result-detail').innerHTML = mode === 'business' 
+                ? `With Section 179 + Bonus Depreciation. Estimated tax savings: <strong>$${taxSavings.toLocaleString()}</strong>`
+                : `Based on MACRS 5-year schedule. You could save <strong>$${taxSavings.toLocaleString()}</strong> in taxes.`;
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('Thanks for signing up! We\'ll be in touch soon.');
+        }
+
+        // Initial calculation
+        updateCalculation();
+    </script>
+</body>
+</html>
